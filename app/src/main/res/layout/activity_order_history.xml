@@ -3,10 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/brown_light"
-    tools:context=".MainActivity">
-
+    tools:context=".OrderHistory">
     <include layout="@layout/header"/>
-    <include layout="@layout/activity_history"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
