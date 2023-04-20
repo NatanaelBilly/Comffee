@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">PPB_comffee</string>
+    <string name="app_name">COMFFEE</string>
+    <string name="welcome">Selamat Datang di Aplikasi COMFFEE</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_log_in">Log in</string>
+    <string name="action_log_in">LOGIN</string>
     <string name="action_log_in_short">Log in</string>
     <string name="login_failed">"Login failed"</string>
     <string name="login_page">Login Page</string>
     <string name="blm_pny_akun_regis">Belum punya akun? register</string>
-    <string name="action_regis">Register</string>
+    <string name="action_regis">REGISTER</string>
     <string name="action_regis_short">Register</string>
-
+    <string name="profile">profile</string>
+    <string name="history">history</string>
+    <string name="order">order</string>
 </resources>
