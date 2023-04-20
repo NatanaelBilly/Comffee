@@ -26,21 +26,21 @@ class WelcomePage : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-//        when (v.id) {
-//            R.id.btn_login -> {
-//                val mFragmentManager = fragmentManager as FragmentManager
-//                val mLoginFragment = LoginFragment()
-//                mFragmentManager
-//                    .beginTransaction()
-//                    .replace(
-//                        R.id.frame_container,
-//                        mLoginFragment,
-//                        LoginFragment::class.java.simpleName
-//                    )
-//                    .addToBackStack(null)
-//                    .commit()
-//            }
-//            R.id.btn_login -> {
+        when (v.id) {
+            R.id.btn_login -> {
+                val mFragmentManager = fragmentManager as FragmentManager
+                val mLoginFragment = LoginFragment()
+                mFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.frame_container,
+                        mLoginFragment,
+                        LoginFragment::class.java.simpleName
+                    )
+                    .addToBackStack(null)
+                    .commit()
+            }
+//            R.id.btn_register -> {
 //                val mFragmentManager = fragmentManager as FragmentManager
 //                val mRegisterFragment = RegisterFragment()
 //                mFragmentManager
@@ -53,6 +53,6 @@ class WelcomePage : Fragment(), View.OnClickListener {
 //                    .addToBackStack(null)
 //                    .commit()
 //            }
-//        }
+        }
     }
 }
