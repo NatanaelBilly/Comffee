@@ -12,7 +12,7 @@ class CartControllers {
     private fun getCartId(): Int? {
         var cartId: Int? =null
 
-        val query = "SELECT cart_id FROM cart WHERE user_id = '${ActiveUser.getId()}'"
+        val query = "SELECT cart_id FROM cart WHERE user_id = '${ActiveUser.getUser_id()}'"
 
         try {
             val stmt: Statement = con!!.createStatement()
