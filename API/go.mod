@@ -1,4 +1,4 @@
-module comffee
+module github.com/NatanaelBilly/Comffee/API
 
 go 1.17
 
