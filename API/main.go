@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/NatanaelBilly/Comffee/API/controllers"
+	"github.com/Comffee/controllers"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )

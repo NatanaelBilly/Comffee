@@ -7,6 +7,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
+func Test() {
+
+}
+
 func LoadEnv(input string) string {
 	err := godotenv.Load("API/catatan.env")
 	if err != nil {

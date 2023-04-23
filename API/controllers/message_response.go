@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	model "github.com/NatanaelBilly/Comffee/API/model"
+	"github.com/Comffee/model"
 )
 
 func SendSuccessResponse(w http.ResponseWriter) {
