@@ -6,6 +6,6 @@
     tools:context=".DetailHistoryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <include layout="@layout/header"/>
+    <include layout="@layout/header" />
 
 </FrameLayout>

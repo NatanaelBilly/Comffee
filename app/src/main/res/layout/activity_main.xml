@@ -6,7 +6,8 @@
     android:background="@color/brown_light"
     tools:context=".MainActivity">
 
-    <include layout="@layout/header"/>
-    <include layout="@layout/activity_history"/>
+    <include layout="@layout/header" />
+
+    <include layout="@layout/activity_history" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

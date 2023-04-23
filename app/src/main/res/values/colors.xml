@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="brown_light">#E9CBA7</color>
     <color name="brown_comffee">#674736</color>
+    <color name="my_menu_hover_color">#FFA500</color>
 </resources>

@@ -11,6 +11,8 @@
     <string name="order_time">Order Time</string>
     <string name="order_total">Order Total</string>
     <string name="order_detail">Order Detail</string>
+    <string name="order_now">Order Received</string>
+    <string name="order_status">Done</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
