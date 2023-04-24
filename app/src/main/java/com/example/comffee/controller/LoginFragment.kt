@@ -8,10 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import com.example.comffee.R
 
 class LoginFragment : Fragment(), View.OnClickListener {
+
+    private lateinit var email: TextView
+    private lateinit var password: TextView
+    private lateinit var btnLogin: Button
+    private lateinit var btnRegis: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -20,32 +26,29 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val email: EditText = view.findViewById(R.id.email)
-        val password: EditText = view.findViewById(R.id.password)
-        val btnLogin: Button = view.findViewById(R.id.btn_login)
-        val btnRegister: Button = view.findViewById(R.id.btn_register)
+
+        email = view.findViewById(R.id.in_email)
+        password = view.findViewById(R.id.in_password)
+        btnLogin = view.findViewById(R.id.btn_login)
+        btnRegis = view.findViewById(R.id.btn_regis)
+
         btnLogin.setOnClickListener(this)
-        btnRegister.setOnClickListener(this)
+        btnRegis.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btn_login -> {
-                val login = Intent (this@LoginFragment, LoginFragment::class.java)
-                    //Intent(this@LoginFragment, intent::class.java)
-                login.putExtra(login.EXTRA_EMAIL, "if-20034@student.ithb.ac.id")
-                login.putExtra(login.EXTRA_PASSWORD, "123456")
-                startActivity(login)
-            }
-            R.id.btn_register -> {
+//            R.id.btn_login -> {
+//
+//            }
+            R.id.btn_regis -> {
                 val mFragmentManager = fragmentManager as FragmentManager
                 val mRegisterFragment = RegisterFragment()
                 mFragmentManager
                     .beginTransaction()
                     .replace(
                         R.id.frame_container,
-                        mRegisterFragment,
-                        LoginFragment::class.java.simpleName
+                        mRegisterFragment, LoginFragment::class.java.simpleName
                     )
                     .addToBackStack(null)
                     .commit()
