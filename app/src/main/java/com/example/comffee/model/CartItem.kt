@@ -8,5 +8,6 @@ data class CartItem (
     var cartitem_id:Int,
     var item_id:Int,
     var cart_id:Int,
-    var quantity:Int
+    var quantity:Int,
+    var items:ArrayList<Item>
     ):Parcelable
