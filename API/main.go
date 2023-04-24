@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Comffee/controllers"
 	"github.com/gorilla/mux"
 	"github.com/rs/cors"
 )
@@ -40,7 +41,7 @@ func main() {
 	// router.HandleFunc("/LihatHistoryPesawat/{id_pengguna}", controllers.MelihatHistoryPesawat).Methods("GET")
 	// router.HandleFunc("/LihatHistoryHotel/{id_pengguna}", controllers.MelihatHistoryHotel).Methods("GET")
 
-	svrPort := "8080"
+	svrPort := controllers.LoadEnv("SVR_PORT")
 	log.Println("Connected to port " + svrPort)
 	addr := ":" + svrPort
 
