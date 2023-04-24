@@ -14,10 +14,10 @@ type Cart struct {
 }
 
 type Cartitem struct {
-	Cartitem_id int `json:"cartitem_id"`
-	Cart_id     int `json:"cart_id"`
-	Item_id     int `json:"item_id"`
-	Quantity    int `json:"quantity"`
+	Cartitem_id int  `json:"cartitem_id"`
+	Cart_id     int  `json:"cart_id"`
+	Quantity    int  `json:"quantity"`
+	Items       Item `json:item`
 }
 
 type ItemResponse struct {
