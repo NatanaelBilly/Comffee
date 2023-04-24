@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/fragment_vertical_margin"
     android:paddingRight="@dimen/fragment_horizontal_margin"
     android:paddingBottom="@dimen/fragment_vertical_margin"
-    tools:context=".LoginFragment">
+    tools:context=".controller.LoginFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -35,7 +35,7 @@
         app:srcCompat="@drawable/kopi" />
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/in_username"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/in_email"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -62,10 +62,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username"  />
+        app:layout_constraintTop_toBottomOf="@+id/in_username"  />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/in_password"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -77,10 +77,10 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/in_email" />
 
     <EditText
-        android:id="@+id/address"
+        android:id="@+id/in_address"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
@@ -91,7 +91,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/in_password" />
 
     <Button
         android:id="@+id/btn_register"
@@ -107,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address"
+        app:layout_constraintTop_toBottomOf="@+id/in_address"
         app:layout_constraintVertical_bias="0.1" />
 
     <TextView

@@ -1,7 +1,8 @@
-package com.example.comffee
+package com.example.comffee.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.comffee.R
 
 class HomePage : AppCompatActivity() {
     companion object {

@@ -1,15 +1,17 @@
-package com.example.comffee
+package com.example.comffee.model
 
 import android.os.Parcel
 import android.os.Parcelable
 
 data class User (
-    val username: String?,
-    val email: String?,
-    val password: String?,
-    val address: String?
+    val id: Int = 0,
+    var username: String? = null,
+    var email: String? = null,
+    var password: String? = null,
+    var address: String? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -18,6 +20,7 @@ data class User (
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(username)
         parcel.writeString(email)
         parcel.writeString(password)
