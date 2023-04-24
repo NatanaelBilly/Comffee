@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.FragmentManager
 
-
-class WelcomePage : Fragment(), View.OnClickListener {
+class RegisterFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_welcome_page, container, false)
+        return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,19 +38,19 @@ class WelcomePage : Fragment(), View.OnClickListener {
                     .addToBackStack(null)
                     .commit()
             }
-            R.id.btn_register -> {
-                val mFragmentManager = fragmentManager as FragmentManager
-                val mRegisterFragment = RegisterFragment()
-                mFragmentManager
-                    .beginTransaction()
-                    .replace(
-                        R.id.frame_container,
-                        mRegisterFragment,
-                        LoginFragment::class.java.simpleName
-                    )
-                    .addToBackStack(null)
-                    .commit()
-            }
+//            R.id.btn_register -> {
+//                val mFragmentManager = fragmentManager as FragmentManager
+//                val mRegisterFragment = RegisterFragment()
+//                mFragmentManager
+//                    .beginTransaction()
+//                    .replace(
+//                        R.id.frame_container,
+//                        mRegisterFragment,
+//                        LoginFragment::class.java.simpleName
+//                    )
+//                    .addToBackStack(null)
+//                    .commit()
+//            }
         }
     }
 }

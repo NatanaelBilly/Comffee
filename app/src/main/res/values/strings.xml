@@ -3,11 +3,15 @@
     <string name="welcome">Selamat Datang di Aplikasi COMFFEE</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_username">Username</string>
+    <string name="prompt_address">Address</string>
     <string name="action_log_in">LOGIN</string>
-    <string name="action_log_in_short">Log in</string>
+<!--    <string name="action_log_in_short">Log in</string>-->
     <string name="login_failed">"Login failed"</string>
     <string name="login_page">Login Page</string>
+    <string name="regis_page">Register Page</string>
     <string name="blm_pny_akun_regis">Belum punya akun? register</string>
+    <string name="pny_akun_login">Sudah punya akun? login</string>
     <string name="action_regis">REGISTER</string>
     <string name="action_regis_short">Register</string>
     <string name="profile">profile</string>
