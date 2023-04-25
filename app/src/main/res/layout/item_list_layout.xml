@@ -10,7 +10,7 @@
         android:background="@color/bg_item">
 
         <ImageView
-            android:id="@+id/cartFnbPic"
+            android:id="@+id/imgItem"
             android:layout_width="130dp"
             android:layout_height="95dp"
             android:layout_marginLeft="10dp"
@@ -19,7 +19,7 @@
             android:src="@drawable/kopi" />
 
         <TextView
-            android:id="@+id/item_nama"
+            android:id="@+id/item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
@@ -49,7 +49,7 @@
             android:textSize="18sp"
             android:textColor="@color/white"/>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/img_addToShoppingCart"
             android:layout_width="40dp"
             android:layout_height="40dp"

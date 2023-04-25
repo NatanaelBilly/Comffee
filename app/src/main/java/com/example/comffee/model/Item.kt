@@ -8,5 +8,6 @@ data class Item (
     var item_id: Int,
     var item_name: String,
     var price: Int,
-    var description:String
+    var description: String,
+    var photo: String
 ): Parcelable
