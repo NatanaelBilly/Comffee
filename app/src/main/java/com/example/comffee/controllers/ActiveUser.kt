@@ -1,19 +1,22 @@
 package com.example.comffee.controller
 
+import com.example.comffee.model.Transaction
+
 
 object ActiveUser {
 
     // Singleton
 
-    private var user_id: String = "NoId"
+    private var user_id: Int = 0
     private var username: String = "NoUsername"
     private var email: String = "NoEmail"
     private var password: String = "NoPassword"
-    private var address: String = "NoAddress" // MEMBER, ADMIN, CASHIER
+    private var address: String = "NoAddress"
+    private var activeTransaction: Transaction? = null
 
     // Setter
 
-    fun setUser_id(user_id: String) {
+    fun setUser_id(user_id: Int) {
         this.user_id = user_id
     }
 
@@ -33,9 +36,13 @@ object ActiveUser {
         this.address = address
     }
 
+    fun setActiveTransaction(activeTransaction: Transaction?){
+        this.activeTransaction = activeTransaction
+    }
+
     // Getter
 
-    fun getUser_id(): String {
+    fun getUser_id(): Int {
         return this.user_id
     }
 
@@ -54,4 +61,9 @@ object ActiveUser {
     fun getAdress(): String {
         return this.address
     }
+
+    fun getActiveTransaction(): Transaction? {
+        return this.activeTransaction
+    }
+
 }
