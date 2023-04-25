@@ -49,11 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rellay1">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:id="@+id/back_button_in_profile"
-            android:src="@drawable/back"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
