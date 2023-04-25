@@ -1,21 +1,19 @@
 package com.example.comffee.controllers
 
-
 import android.database.SQLException
 import android.util.Log
-import com.example.comffee.controllers.DatabaseHandler
 import com.example.comffee.model.Transaction
 import com.example.comffee.model.User
 import java.sql.ResultSet
 import java.sql.Statement
 
-class LoginControllers {
+class LoginController {
     private var con = DatabaseHandler.connect()
 
     fun getLoginData(inputEmail: String, inputPassword: String): Boolean {
-        var user = User(0, "", "", "", "")
+        var user = User("", "","","","")
         val query =
-            "SELECT * FROM user WHERE email = '$inputEmail' AND password = '$inputPassword'"
+            "SELECT * FROM users WHERE email = '$inputEmail' AND password = '$inputPassword'"
 
         try {
             val stmt: Statement = con!!.createStatement()
@@ -23,7 +21,7 @@ class LoginControllers {
 
             while (rs.next()) {
                 user = User(
-                    rs.getInt("userId"),
+                    rs.getString("userId"),
                     rs.getString("firstName"),
                     rs.getString("lastName"),
                     rs.getString("email"),
@@ -35,19 +33,20 @@ class LoginControllers {
             val isLoggedIn: Boolean = checkLoginData(user, inputEmail, inputPassword)
 
             if (isLoggedIn) {
-                val control = UserControllers()
-                val activeTransactionId = TransactionControllers.getActiveTransactionId(user.user_id)
+                val control = UserController()
+                val userType = control.checkUserType(user.userId)
+                val activeTransactionId = TransactionController.getActiveTransactionId(user.userId)
                 var activeTransaction: Transaction? = null
                 if (activeTransactionId == null) {
-                    control.setSingleton(user, null)
+                    control.setSingleton(user, userType, null)
                 } else {
                     activeTransaction =
-                        TransactionControllers.getTransactionDetail(activeTransactionId)
-                    control.setSingleton(user, activeTransaction)
+                        TransactionController.getTransactionDetail(activeTransactionId)
+                    control.setSingleton(user, userType, activeTransaction)
                 }
 
                 if (activeTransactionId != null) {
-                    Log.d("TAG", activeTransactionId.toString())
+                    Log.d("TAG", activeTransactionId)
                 } else {
                     Log.d("TAG", "no active trans")
                 }
@@ -64,5 +63,4 @@ class LoginControllers {
     private fun checkLoginData(user: User, inputEmail: String, inputPassword: String): Boolean {
         return inputEmail == user.email && inputPassword == user.password
     }
-
 }

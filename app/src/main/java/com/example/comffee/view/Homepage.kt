@@ -3,9 +3,9 @@ package com.example.comffee.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class Register : AppCompatActivity() {
+class Homepage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_homepage)
     }
 }

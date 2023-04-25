@@ -6,11 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e5c9ab"
+    tools:context=".view.Homepage"
     android:id="@+id/home_container"
-    tools:context=".view.HomePage"
     android:orientation="vertical">
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -32,7 +33,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_gravity="center">
 
@@ -70,17 +71,5 @@
             android:backgroundTint="#eeebe3" />
 
     </RelativeLayout>
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@color/white"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"
-        app:itemIconSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+
 </LinearLayout>

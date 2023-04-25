@@ -2,14 +2,13 @@ package com.example.comffee.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.sql.Time
 import java.sql.Timestamp
-import java.time.LocalDateTime
 
 @Parcelize
 class Transaction(
-    var transaction_id: Int,
-    var status: TransactionStatus,
-    var items: ArrayList<Item>,
-    var itemQuantities: ArrayList<Int>
+    var transactionId: String,
+    var table: Table?,
+    var status: TransactionEnum,
+    var items: ArrayList<Items>,
+    var itemsQuantities: ArrayList<Int>
 ) : Parcelable
