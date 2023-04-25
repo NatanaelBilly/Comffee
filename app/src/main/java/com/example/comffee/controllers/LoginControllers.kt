@@ -3,7 +3,7 @@ package com.example.comffee.controllers
 
 import android.database.SQLException
 import android.util.Log
-import com.example.comffee.controller.DatabaseHandler
+import com.example.comffee.controllers.DatabaseHandler
 import com.example.comffee.model.Transaction
 import com.example.comffee.model.User
 import java.sql.ResultSet

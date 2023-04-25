@@ -4,7 +4,7 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-<!--    yg ricad-->
+    <!--    yg ricad-->
     <string name="app_name">COMFFEE</string>
     <string name="welcome">Selamat Datang di Aplikasi COMFFEE</string>
     <string name="prompt_email">Email</string>

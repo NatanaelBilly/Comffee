@@ -1,9 +1,9 @@
 package com.example.comffee.controllers
 
 import android.util.Log
-import com.example.comffee.controller.ActiveUser
+import com.example.comffee.controllers.ActiveUser
 import com.example.comffee.model.*
-import com.example.comffee.controller.DatabaseHandler
+import com.example.comffee.controllers.DatabaseHandler
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement

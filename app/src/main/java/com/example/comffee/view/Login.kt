@@ -14,7 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.comffee.R
-import com.example.comffee.controller.ActiveUser
+import com.example.comffee.controllers.ActiveUser
 import com.example.comffee.controllers.LoginControllers
 import com.example.comffee.controllers.RegisterControllers
 import com.example.comffee.controllers.UserControllers
@@ -72,7 +72,7 @@ class Login : AppCompatActivity() {
     private fun navigateToHomeScreen(){
         finish()
         lateinit var intent: Intent
-        intent = Intent(this@Login, Home::class.java)
+        intent = Intent(this@Login, HomePage::class.java)
         startActivity(intent)
     }
 
