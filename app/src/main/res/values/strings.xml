@@ -1,22 +1,21 @@
 <resources>
     <string name="app_name">COMFFEE</string>
+
     <string name="welcome">Selamat Datang di Aplikasi COMFFEE</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="prompt_username">Username</string>
-    <string name="prompt_address">Address</string>
-    <string name="action_log_in">LOGIN</string>
-<!--    <string name="action_log_in_short">Log in</string>-->
-    <string name="login_failed">"Login failed"</string>
-    <string name="login_page">Login Page</string>
-    <string name="regis_page">Register Page</string>
-    <string name="blm_pny_akun_regis">Belum punya akun? register</string>
-    <string name="pny_akun_login">Sudah punya akun? login</string>
-    <string name="action_regis">REGISTER</string>
-    <string name="action_regis_short">Register</string>
-    <string name="profile">profile</string>
-    <string name="history">history</string>
-    <string name="order">order</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+    <string name="address">Address</string>
+
+    <string name="blm_akun">Belum punya akun? Register disini</string>
+    <string name="pny_akun">Sudah punya akun? Login disini</string>
+
+    <string name="profile">Profile</string>
+    <string name="history">History</string>
+    <string name="order">Order</string>
+    <string name="chk_data">Data sudah benar</string>
 </resources>

@@ -7,7 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="bg_color">#a87d32</color>
-    <color name="bg_item">#543d14</color>
-    <color name="bg_footer">#4f2b02</color>
+    <color name="light_orange">#a87d32</color>
+    <color name="brown">#543d14</color>
+    <color name="dark_brown">#4f2b02</color>
+    <color name="light_brown">#d6ad60 </color>
+    <color name="pink">#f7a9a9</color>
+    <color name="teal">#66cdaa</color>
+    <color name="lime">#befda9 </color>
+    <color name="cream">#f5c66b </color>
 </resources>
