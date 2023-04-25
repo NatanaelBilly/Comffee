@@ -1,4 +1,4 @@
-package com.example.comffee.controller
+package com.example.comffee.controllers
 
 import android.os.StrictMode
 import java.sql.Connection

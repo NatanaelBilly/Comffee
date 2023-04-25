@@ -21,6 +21,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:id="@+id/button_back_in_cart"
                 android:src="@drawable/back"/>
             <TextView
                 android:layout_width="match_parent"

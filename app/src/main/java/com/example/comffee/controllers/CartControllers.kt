@@ -1,4 +1,5 @@
-package com.example.comffee.controller
+package com.example.comffee.controllers
+import com.example.comffee.model.Cart
 import java.sql.ResultSet
 import java.sql.SQLException
 import java.sql.Statement
@@ -84,5 +85,16 @@ class CartControllers {
             e.printStackTrace()
         }
         return total_harga
+    }
+
+    fun getCartData(): Cart {
+        val cart_id = getCartId()
+        val user_id = getTableFromCart()
+        val books = getBookFromCart()
+        val (menus, menuQuantities) = getMenuFromCart()
+
+        val cart = Cart(cart_id, user_id)
+
+        return cart
     }
 }
