@@ -38,6 +38,11 @@ class Register : AppCompatActivity() {
         //init firebase
         auth = FirebaseAuth.getInstance()
 
+        binding.btnLogin.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
+
         //check box click checker
         binding.chkDaftar.setOnCheckedChangeListener { _, isChecked ->
             binding.btnRegis.isEnabled = isChecked
@@ -148,7 +153,8 @@ class Register : AppCompatActivity() {
             "username" to username,
             "email" to email,
             "pass" to pass,
-            "address" to address
+            "address" to address,
+            "type" to 1
         )
 
         //add data to db

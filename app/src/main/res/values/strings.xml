@@ -18,4 +18,5 @@
     <string name="history">History</string>
     <string name="order">Order</string>
     <string name="chk_data">Data sudah benar</string>
+    <string name="logout">Logout</string>
 </resources>

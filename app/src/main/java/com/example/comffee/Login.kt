@@ -17,7 +17,7 @@ class Login : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    private lateinit var progressDialog: ProgressDialog
+//    private lateinit var progressDialog: ProgressDialog
 
     private lateinit var email: String
     private lateinit var pass: String
@@ -28,10 +28,10 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
 
         //progress dialog
-        progressDialog = ProgressDialog(this)
-        progressDialog.setTitle("Please wait")
-        progressDialog.setMessage("Logging in")
-        progressDialog.setCanceledOnTouchOutside(false)
+//        progressDialog = ProgressDialog(this)
+//        progressDialog.setTitle("Please wait")
+//        progressDialog.setMessage("Logging in")
+//        progressDialog.setCanceledOnTouchOutside(false)
 
         //init firebase
         auth = FirebaseAuth.getInstance()
@@ -79,22 +79,22 @@ class Login : AppCompatActivity() {
     }
 
     private fun firebaseLogin() {
-        progressDialog.show()
+//        progressDialog.show()
         auth.signInWithEmailAndPassword(email, pass)
             .addOnSuccessListener {
                 //if login success
-                progressDialog.dismiss()
+//                progressDialog.dismiss()
 
                 Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show()
 
                 //open main activity
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Homepage::class.java)
                 startActivity(intent)
                 finish()
             }
             .addOnFailureListener {
                 //if login failed
-                progressDialog.dismiss()
+//                progressDialog.dismiss()
 
                 Toast.makeText(this, "Login failled. $it", Toast.LENGTH_LONG).show()
             }
