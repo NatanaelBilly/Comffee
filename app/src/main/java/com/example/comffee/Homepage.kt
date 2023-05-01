@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.comffee.databinding.ActivityHomepageBinding
 import com.example.comffee.databinding.ActivityMainBinding
+import com.google.api.ResourceDescriptor.History
 import com.google.firebase.auth.FirebaseAuth
 
 class Homepage : AppCompatActivity() {
@@ -16,6 +17,27 @@ class Homepage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.btnProfile.setOnClickListener {
+            auth.signOut()
+
+            val loginIntent = Intent(this@Homepage, Profile::class.java)
+            startActivity(loginIntent)
+        }
+
+        binding.btnHistory.setOnClickListener {
+            auth.signOut()
+
+            val loginIntent = Intent(this@Homepage, History::class.java)
+            startActivity(loginIntent)
+        }
+
+        binding.btnOrder.setOnClickListener {
+            auth.signOut()
+
+            val loginIntent = Intent(this@Homepage, Order::class.java)
+            startActivity(loginIntent)
+        }
 
         binding.btnLogout.setOnClickListener {
             auth.signOut()

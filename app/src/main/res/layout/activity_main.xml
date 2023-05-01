@@ -8,8 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="15sp"
-    android:background="#e5c9ab"
-    android:id="@+id/frame_container"
+    android:background="@color/lime"
     tools:context=".MainActivity">
 
 </LinearLayout>
