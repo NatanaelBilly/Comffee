@@ -24,13 +24,16 @@ class Profile : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.btnEdit.setOnClickListener {
+
+            val loginIntent = Intent(this, EditProfil::class.java)
+            startActivity(loginIntent)
+        }
         binding.btnBack.setOnClickListener {
 
             val loginIntent = Intent(this, Homepage::class.java)
             startActivity(loginIntent)
         }
-
-        println("$currentUser")
         readUserData()
 
     }
@@ -40,10 +43,13 @@ class Profile : AppCompatActivity() {
         userData.get()
             .addOnSuccessListener {
                 // set username
-                println("data = $it")
-                println("$currentUser")
-                val username = "Halo, ${it.data?.get("username").toString()}"
-                binding.tvUser.text = username
+                val profil = "Halo, ${it.data?.get("username").toString()}" +
+                        "\n" +
+                        "Berikut data profil kamu!" +
+                        "\n" +
+                        " Email: ${it.data?.get("email").toString()}" +
+                        "Alamat: ${it.data?.get("address").toString()}"
+                binding.tvUser.text = profil
 
             }
             .addOnFailureListener {

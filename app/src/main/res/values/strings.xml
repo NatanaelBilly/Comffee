@@ -24,4 +24,9 @@
     <string name="name">Name</string>
     <string name="status">Status</string>
     <string name="harga">Harga</string>
+
+    <string name="edit">Edit</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="passLama">Password Lama</string>
+    <string name="passBaru">Password Baru</string>
 </resources>
