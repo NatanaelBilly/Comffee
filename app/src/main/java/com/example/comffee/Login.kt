@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -84,7 +85,6 @@ class Login : AppCompatActivity() {
             .addOnSuccessListener {
                 //if login success
 //                progressDialog.dismiss()
-
                 Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show()
 
                 //open main activity

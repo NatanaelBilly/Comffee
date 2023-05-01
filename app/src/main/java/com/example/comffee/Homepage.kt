@@ -19,21 +19,18 @@ class Homepage : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnProfile.setOnClickListener {
-            auth.signOut()
 
             val loginIntent = Intent(this@Homepage, Profile::class.java)
             startActivity(loginIntent)
         }
 
         binding.btnHistory.setOnClickListener {
-            auth.signOut()
 
             val loginIntent = Intent(this@Homepage, History::class.java)
             startActivity(loginIntent)
         }
 
         binding.btnOrder.setOnClickListener {
-            auth.signOut()
 
             val loginIntent = Intent(this@Homepage, Order::class.java)
             startActivity(loginIntent)
