@@ -17,7 +17,7 @@ class Login : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-//    private lateinit var progressDialog: ProgressDialog
+    private lateinit var progressDialog: ProgressDialog
 
     private lateinit var email: String
     private lateinit var pass: String
@@ -27,11 +27,11 @@ class Login : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //progress dialog
-//        progressDialog = ProgressDialog(this)
-//        progressDialog.setTitle("Please wait")
-//        progressDialog.setMessage("Logging in")
-//        progressDialog.setCanceledOnTouchOutside(false)
+//        progress dialog
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Please wait")
+        progressDialog.setMessage("Logging in")
+        progressDialog.setCanceledOnTouchOutside(false)
 
         //init firebase
         auth = FirebaseAuth.getInstance()
@@ -93,8 +93,8 @@ class Login : AppCompatActivity() {
                 finish()
             }
             .addOnFailureListener {
-                //if login failed
-//                progressDialog.dismiss()
+//                if login failed
+                progressDialog.dismiss()
 
                 Toast.makeText(this, "Login failled. $it", Toast.LENGTH_LONG).show()
             }
