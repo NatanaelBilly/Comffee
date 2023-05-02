@@ -33,25 +33,6 @@ class History : AppCompatActivity() {
             val loginIntent = Intent(this, Homepage::class.java)
             startActivity(loginIntent)
         }
-
-//        getItemData()
     }
 
-//    private fun getItemData() {
-//        itemId = "bk1"
-//        val itemData = firestore.collection("items").document(itemId)
-//        itemData.get()
-//            .addOnSuccessListener {
-//
-//                println("data = $it")
-//                // set Items
-//                val item = "Nama : ${it.data?.get("nama_barang").toString()}" +
-//                        "\n Harga : ${it.data?.get("harga").toString()}"
-//                binding.tvItem.text = item
-//
-//            }
-//            .addOnFailureListener {
-//                Log.e("Firestore error!", it.message.toString())
-//            }
-//    }
 }

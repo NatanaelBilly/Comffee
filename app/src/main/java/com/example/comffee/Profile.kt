@@ -24,11 +24,12 @@ class Profile : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnEdit.setOnClickListener {
+//        binding.btnEdit.setOnClickListener {
+//
+//            val loginIntent = Intent(this, EditProfil::class.java)
+//            startActivity(loginIntent)
+//        }
 
-            val loginIntent = Intent(this, EditProfil::class.java)
-            startActivity(loginIntent)
-        }
         binding.btnBack.setOnClickListener {
 
             val loginIntent = Intent(this, Homepage::class.java)
@@ -48,6 +49,7 @@ class Profile : AppCompatActivity() {
                         "Berikut data profil kamu!" +
                         "\n" +
                         " Email: ${it.data?.get("email").toString()}" +
+                        "\n" +
                         "Alamat: ${it.data?.get("address").toString()}"
                 binding.tvUser.text = profil
 

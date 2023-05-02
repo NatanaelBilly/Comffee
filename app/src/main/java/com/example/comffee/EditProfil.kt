@@ -27,6 +27,7 @@ class EditProfil : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialog
 
     private lateinit var passLama: String
+    private lateinit var passVerif: String
     private lateinit var passBaru: String
     private lateinit var address: String
 
@@ -36,7 +37,8 @@ class EditProfil : AppCompatActivity() {
         setContentView(binding.root)
 
         passLama = binding.passLama.text.toString()
-//        getPassLama(passLama.toString())
+//        getPassLama()
+        println("password lama: $passVerif")
         passBaru = binding.passBaru.text.toString()
         address = binding.address.text.toString()
 
@@ -51,68 +53,45 @@ class EditProfil : AppCompatActivity() {
             passBaru = binding.passBaru.text.toString()
             address = binding.address.text.toString()
 
-            //validasi password kosong
+            //validasi password lama kosong
             if (passLama.isEmpty()){
                 binding.passLama.error = "password harus diisi!"
                 binding.passLama.requestFocus()
                 return@setOnClickListener
             }
 
-            //validasi password terlalu pendek
-            if (passLama.length < 8){
-                binding.passLama.error = "password terlalu pendek!"
+            //validasi kesesuaian password lama
+            if (passLama != passVerif){
+                binding.passLama.error = "password tidak sesuai!"
                 binding.passLama.requestFocus()
                 return@setOnClickListener
             }
 
-            //validasi password kosong
+            //validasi password baru kosong
             if (passBaru.isEmpty()){
                 binding.passBaru.error = "password harus diisi!"
                 binding.passBaru.requestFocus()
                 return@setOnClickListener
             }
 
-            //validasi password terlalu pendek
+            //validasi password baru terlalu pendek
             if (passBaru.length < 8){
                 binding.passBaru.error = "password terlalu pendek!"
                 binding.passBaru.requestFocus()
                 return@setOnClickListener
             }
-
-            //validasi email kosong
-            if (address.isEmpty()){
-                binding.address.error = "Alamat harus diisi!"
-                binding.address.requestFocus()
-                return@setOnClickListener
-            }
-            Edit()
-        }
     }
 
 //    private fun getPassLama() {
 //        userData.get()
 //            .addOnSuccessListener {
 //                // set username
-//                val passLama = "${it.data?.get("pass").toString()}"
+//                passVerif = it.data?.get("pass").toString()
 //            }
 //            .addOnFailureListener {
 //                Log.e("Firestore error!", it.message.toString())
-//                val passLama = ""
+//                passVerif = "tidakadapassword"
 //            }
-//    }
 
-    fun Edit(){
-        userData.get()
-            .addOnSuccessListener {
-                userData.update(mapOf(
-                    "pass" to passBaru,
-                    "address" to address,
-                ))
-            }
-            .addOnFailureListener {
-                Log.e("Failed to get data", it.message.toString())
-            }
     }
-
-
 }
