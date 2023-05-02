@@ -6,6 +6,5 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Cart (
     var cart_id:Int,
-    var user_id:Int,
-    var items:ArrayList<Item>
+    var user_id:Int
 ):Parcelable
