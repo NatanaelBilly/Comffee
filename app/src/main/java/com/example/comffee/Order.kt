@@ -52,50 +52,21 @@ class Order : AppCompatActivity() {
     }
 
     // isi list id item
-//    private fun getItemData() {
-//        val list: MutableList<String> = ArrayList()
-//        firestore.collection("items").get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    for (document in task.result) {
-//                        list.add(document.id)
-//                        println("listnya: $list")
-//                        val stringBuilder = StringBuilder()
-//                        for (item in list) {
-//                            stringBuilder.append(item).append("\n")
-//                        }
-//                        val result = stringBuilder.toString()
-//                        println("print list: $result")
-//                        binding.tvItem.text = result
-//                    }
-//                    Log.d(TAG, list.toString())
-//                } else {
-//                    Log.d(TAG, "Error getting documents: ", task.exception)
-//                }
-//            }
-//    }
-
-    // isi listnya nama_barang
     private fun getItemData() {
+        val list: MutableList<String> = ArrayList()
         firestore.collection("items").get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    val list: MutableList<String> = ArrayList()
                     for (document in task.result) {
-                        firestore.collection("items").document(document.id).get()
-                            .addOnSuccessListener {
-                                list.add(it.data?.get("nama_barang").toString())
-                                println("listnya: $list")val stringBuilder = StringBuilder()
-                                for (item in list) {
-                                    stringBuilder.append(item).append("\n")
-                                }
-                                val result = stringBuilder.toString()
-                                println("print list: $result")
-                                binding.tvItem.text = result
-                            }
-                            .addOnFailureListener {
-                                Log.e("Firestore error!", it.message.toString())
-                            }
+                        list.add(document.id)
+                        println("listnya: $list")
+                        val stringBuilder = StringBuilder()
+                        for (item in list) {
+                            stringBuilder.append(item).append("\n")
+                        }
+                        val result = stringBuilder.toString()
+                        println("print list: $result")
+                        binding.tvItem.text = result
                     }
                     Log.d(TAG, list.toString())
                 } else {
@@ -103,6 +74,35 @@ class Order : AppCompatActivity() {
                 }
             }
     }
+
+    // isi listnya nama_barang
+//    private fun getItemData() {
+//        firestore.collection("items").get()
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    val list: MutableList<String> = ArrayList()
+//                    for (document in task.result) {
+//                        firestore.collection("items").document(document.id).get()
+//                            .addOnSuccessListener {
+//                                list.add(it.data?.get("nama_barang").toString())
+//                                println("listnya: $list")val stringBuilder = StringBuilder()
+//                                for (item in list) {
+//                                    stringBuilder.append(item).append("\n")
+//                                }
+//                                val result = stringBuilder.toString()
+//                                println("print list: $result")
+//                                binding.tvItem.text = result
+//                            }
+//                            .addOnFailureListener {
+//                                Log.e("Firestore error!", it.message.toString())
+//                            }
+//                    }
+//                    Log.d(TAG, list.toString())
+//                } else {
+//                    Log.d(TAG, "Error getting documents: ", task.exception)
+//                }
+//            }
+//    }
 
     // pake keymap
 //    private fun getItemData() {
