@@ -26,7 +26,7 @@ class Homepage : AppCompatActivity() {
 
         binding.btnHistory.setOnClickListener {
 
-            val loginIntent = Intent(this@Homepage, History::class.java)
+            val loginIntent = Intent(this@Homepage, com.example.comffee.History::class.java)
             startActivity(loginIntent)
         }
 

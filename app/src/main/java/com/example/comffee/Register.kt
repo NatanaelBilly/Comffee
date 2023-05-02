@@ -17,6 +17,9 @@ class Register : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
+    // init firestore
+    val firestore = Firebase.firestore
+
     private lateinit var progressDialog: ProgressDialog
 
 
@@ -144,9 +147,6 @@ class Register : AppCompatActivity() {
     private fun insertData() {
         email = binding.email.text.toString()
         username = binding.username.text.toString()
-
-        // init firestore
-        val firestore = Firebase.firestore
 
         // value yang mau ditambahkan ke db
         val user = hashMapOf(
