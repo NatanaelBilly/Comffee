@@ -4,8 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.comffee.controller.ItemListController
-import com.example.comffee.databinding.ItemListBinding
+import com.example.comffee.controllers.ItemListController
 import com.example.comffee.databinding.ItemListLayoutBinding
 import com.example.comffee.model.Item
 import com.squareup.picasso.Picasso
