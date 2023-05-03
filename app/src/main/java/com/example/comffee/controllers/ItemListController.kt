@@ -1,4 +1,4 @@
-package com.example.comffee.controller
+package com.example.comffee.controllers
 
 import java.sql.ResultSet
 import java.sql.SQLException
