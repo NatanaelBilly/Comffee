@@ -32,7 +32,7 @@ class Homepage : AppCompatActivity() {
 
         binding.btnOrder.setOnClickListener {
 
-            val loginIntent = Intent(this@Homepage, Order::class.java)
+            val loginIntent = Intent(this@Homepage, ItemList::class.java)
             startActivity(loginIntent)
         }
 
