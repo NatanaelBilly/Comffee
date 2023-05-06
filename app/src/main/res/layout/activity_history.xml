@@ -1,32 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<!--<LinearLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical"-->
+<!--    android:gravity="center"-->
+<!--    android:padding="15sp"-->
+<!--    android:background="@color/light_orange"-->
+<!--    tools:context=".History">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvItem"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="15dp"-->
+<!--        android:text="Item"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="20sp"-->
+<!--        tools:layout_editor_absoluteX="16dp" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_back"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/button"-->
+<!--        android:text="Back"-->
+<!--        android:textSize="15sp"/>-->
+
+<!--</LinearLayout>-->
+
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="15sp"
-    android:background="@color/lime"
-    tools:context=".History">
+    android:layout_gravity="center"
+    android:background="@color/light_orange"
+    tools:context=".Homepage">
 
-    <TextView
-        android:id="@+id/tvItem"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="Item"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="15sp"
+        android:background="@color/light_orange"
+        tools:context=".History">
 
-    <Button
-        android:id="@+id/btn_back"
+        <TextView
+            android:id="@+id/tvItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="Item"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="16dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button"
-        android:text="Back"
-        android:textSize="15sp"/>
+        android:layout_height="75dp"
+        android:background="@color/brown"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:itemIconSize="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

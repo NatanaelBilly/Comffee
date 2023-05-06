@@ -29,11 +29,40 @@ class Order : AppCompatActivity() {
         binding = ActivityOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBack.setOnClickListener {
-
-            val loginIntent = Intent(this, Homepage::class.java)
-            startActivity(loginIntent)
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.icon_home->{
+                    val intent = Intent(this, Homepage::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_profile->{
+                    val intent = Intent(this, Profile::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_history->{
+                    val intent = Intent(this, com.example.comffee.History::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_order->{
+                    val intent = Intent(this, Order::class.java)
+                    startActivity(intent)
+                    // Biar gada transisi blink
+                    overridePendingTransition(0, 0)
+                }
+                R.id.icon_logout->{
+                    auth.signOut()
+                    val loginIntent = Intent(this, Login::class.java)
+                    startActivity(loginIntent)
+                }
+            }
+            true
         }
+
+//        binding.btnBack.setOnClickListener {
+//
+//            val loginIntent = Intent(this, Homepage::class.java)
+//            startActivity(loginIntent)
+//        }
 
         getItemData()
         itemId = "bk1"
