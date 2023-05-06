@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="15sp"
-    android:background="@color/lime"
+    android:background="@color/light_orange"
     tools:context=".Login">
 
     <TextView

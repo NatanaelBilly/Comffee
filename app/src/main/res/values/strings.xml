@@ -29,4 +29,10 @@
     <string name="edit_profil">Edit Profil</string>
     <string name="passLama">Password Lama</string>
     <string name="passBaru">Password Baru</string>
+
+
+    <string name="title_home">Home</string>
+    <string name="title_item">Items</string>
+    <string name="title_order">Orders</string>
+    <string name="title_profile">Profile</string>
 </resources>
