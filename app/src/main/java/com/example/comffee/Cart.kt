@@ -1,8 +1,11 @@
 package com.example.comffee
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +16,8 @@ import com.google.firebase.firestore.*
 
 private  lateinit var binding: ActivityCartBinding
 private lateinit var recyclerView: RecyclerView
+private lateinit var back: ImageView
+private lateinit var bayar: Button
 private lateinit var itemArrayList: ArrayList<Item>
 private lateinit var itemAdapter: ItemAdapter
 private val firestore = Firebase.firestore
@@ -36,6 +41,17 @@ class Cart : AppCompatActivity() {
 
         recyclerView.adapter = itemAdapter
 
+        back=findViewById(R.id.back_btn)
+        back.setOnClickListener{
+            val intent= Intent(this, Homepage::class.java)
+            startActivity(intent)
+        }
+
+        bayar=findViewById((R.id.cartBuy))
+        bayar.setOnClickListener{
+            val intent= Intent(this, Homepage::class.java)
+            startActivity(intent)
+        }
         readAddress()
         EventChangeListener()
     }
