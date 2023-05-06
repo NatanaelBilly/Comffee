@@ -18,6 +18,8 @@ class Homepage : AppCompatActivity() {
         binding = ActivityHomepageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.icon_home->{
