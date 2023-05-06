@@ -37,7 +37,11 @@ class Homepage : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.icon_order->{
-                    val intent = Intent(this, Order::class.java)
+                    val intent = Intent(this, ItemList::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_shopping_cart->{
+                    val intent = Intent(this, ItemList::class.java)
                     startActivity(intent)
                 }
                 R.id.icon_logout->{

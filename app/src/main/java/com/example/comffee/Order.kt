@@ -44,10 +44,14 @@ class Order : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.icon_order->{
-                    val intent = Intent(this, Order::class.java)
+                    val intent = Intent(this, ItemList::class.java)
                     startActivity(intent)
                     // Biar gada transisi blink
                     overridePendingTransition(0, 0)
+                }
+                R.id.icon_shopping_cart->{
+                    val intent = Intent(this, ItemList::class.java)
+                    startActivity(intent)
                 }
                 R.id.icon_logout->{
                     auth.signOut()

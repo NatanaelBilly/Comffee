@@ -45,7 +45,7 @@ class History : AppCompatActivity() {
                     overridePendingTransition(0, 0)
                 }
                 R.id.icon_order->{
-                    val intent = Intent(this, Order::class.java)
+                    val intent = Intent(this, ItemList::class.java)
                     startActivity(intent)
                 }
                 R.id.icon_logout->{
