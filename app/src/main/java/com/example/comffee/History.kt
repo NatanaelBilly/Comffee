@@ -18,10 +18,13 @@ import com.google.firebase.ktx.Firebase
 class History : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoryBinding
-
-    private val auth = FirebaseAuth.getInstance()
-
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var itemArrayList: ArrayList<Item>
+    private lateinit var itemAdapter: ItemAdapter
     private val firestore = Firebase.firestore
+    private val auth = FirebaseAuth.getInstance()
+    private val currentUser = auth.currentUser
+    val userData = firestore.collection("users").document(currentUser?.email.toString())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
