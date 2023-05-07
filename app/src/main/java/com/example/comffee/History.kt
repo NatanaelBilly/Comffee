@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ProgressBar
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comffee.databinding.ActivityHistoryBinding
 import com.example.comffee.databinding.ActivityHomepageBinding
@@ -12,6 +13,7 @@ import com.example.comffee.databinding.ActivityOrderBinding
 import com.example.comffee.databinding.ActivityProfileBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -20,7 +22,6 @@ class History : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemArrayList: ArrayList<Item>
-    private lateinit var itemAdapter: ItemAdapter
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
@@ -30,6 +31,10 @@ class History : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        recyclerView = findViewById(R.id.historyRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -65,6 +70,30 @@ class History : AppCompatActivity() {
 //            val loginIntent = Intent(this, Homepage::class.java)
 //            startActivity(loginIntent)
 //        }
+
+        showHistory()
     }
+
+    private fun showHistory() {
+        firestore.collection("cart")
+            .whereEqualTo("status", "selesai")
+            .orderBy("nama_barang", Query.Direction.ASCENDING)
+            .addSnapshotListener(object : EventListener<QuerySnapshot> {
+                override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+                    if (error != null) {
+                        Log.e("Firestore Error", error.message.toString())
+                        return
+                    }
+
+                    for (dc: DocumentChange in value?.documentChanges!!) {
+                        if (dc.type == DocumentChange.Type.ADDED) {
+                            itemArrayList.add(dc.document.toObject(Item::class.java))
+                        }
+                    }
+                }
+
+            })
+    }
+
 
 }
