@@ -15,6 +15,9 @@
     <color name="teal">#66cdaa</color>
     <color name="lime">#befda9 </color>
     <color name="cream">#f5c66b </color>
+    <color name="bg_color">#a87d32</color>
+    <color name="bg_item">#543d14</color>
+    <color name="bg_footer">#4f2b02</color>
 
     <color name="Chocolate"> #e5c9ab </color>
 </resources>

@@ -24,17 +24,48 @@ class Profile : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.icon_home->{
+                    val intent = Intent(this, Homepage::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_profile->{
+                    val intent = Intent(this, Profile::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_history->{
+                    val intent = Intent(this, com.example.comffee.History::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_order->{
+                    val intent = Intent(this, ItemList::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_shopping_cart->{
+                    val intent = Intent(this, ItemList::class.java)
+                    startActivity(intent)
+                }
+                R.id.icon_logout->{
+                    auth.signOut()
+                    val loginIntent = Intent(this, Login::class.java)
+                    startActivity(loginIntent)
+                }
+            }
+            true
+        }
+
 //        binding.btnEdit.setOnClickListener {
 //
 //            val loginIntent = Intent(this, EditProfil::class.java)
 //            startActivity(loginIntent)
 //        }
 
-        binding.btnBack.setOnClickListener {
-
-            val loginIntent = Intent(this, Homepage::class.java)
-            startActivity(loginIntent)
-        }
+//        binding.btnBack.setOnClickListener {
+//
+//            val loginIntent = Intent(this, Homepage::class.java)
+//            startActivity(loginIntent)
+//        }
         readUserData()
 
     }
