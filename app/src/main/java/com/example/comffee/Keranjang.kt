@@ -1,12 +1,11 @@
 package com.example.comffee
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.comffee.databinding.ActivityItemListBinding
+import com.example.comffee.databinding.ActivityKeranjangBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -14,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 
 class Keranjang : AppCompatActivity() {
 
-    private lateinit var binding: ActivityItemListBinding
+    private lateinit var binding: ActivityKeranjangBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemArrayList: ArrayList<Item>
     private lateinit var itemCartAdapter: ItemCartAdapter
@@ -25,7 +24,7 @@ class Keranjang : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityItemListBinding.inflate(layoutInflater)
+        binding = ActivityKeranjangBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()
@@ -57,13 +56,14 @@ class Keranjang : AppCompatActivity() {
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
                             itemArrayList.add(dc.document.toObject(Item::class.java))
+                            println("ini isi: $itemArrayList")
                         }
                     }
 
                     itemCartAdapter.notifyDataSetChanged()
                 }
-
             })
+
 
 
     }

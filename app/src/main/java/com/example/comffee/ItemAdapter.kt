@@ -72,7 +72,14 @@ class ItemAdapter(private val itemList: ArrayList<Item>) :
                 val itemPosition = adapterPosition
                 val clickedItem = itemList[itemPosition]
                 println("ini qty: $quantity")
-                val item = hashMapOf("item" to clickedItem,"qty" to qty.toDouble())
+                println("Ini item post: $itemPosition")
+                println("Ini clicked item: $clickedItem")
+                val item = hashMapOf(
+                    "item_id" to clickedItem.item_id,
+                    "nama_barang" to clickedItem.nama_barang,
+                    "harga" to clickedItem.harga,
+                    "imagePath" to clickedItem.imagePath,
+                    "qty" to qty.toDouble())
 
 //                val cartCollection = db.collection("carts")
                 val cartCollection = userData.collection("keranjang").document(clickedItem.item_id.toString())

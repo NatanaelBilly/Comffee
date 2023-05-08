@@ -29,20 +29,20 @@ class ItemCartAdapter(private val itemList: ArrayList<Item>) : RecyclerView.Adap
         holder.namaBarang.text = item.nama_barang
         holder.harga.text = item.harga.toString()
 
-//        val resId = holder.itemView.context.resources.getIdentifier(
-//            item.imagePath,
-//            "drawable",
-//            holder.itemView.context.packageName
-//        )
-//        if (resId == 0) {
-//            Log.d(ContentValues.TAG, "Cannot find image with name ${item.imagePath} in drawable folder")
-//        } else {
-//            Glide.with(holder.itemView.context)
-//                .load(resId)
-//                .placeholder(R.drawable.image_not_supported)
-//                .error(R.drawable.image_not_supported)
-//                .into(holder.imageView)
-//        }
+        val resId = holder.itemView.context.resources.getIdentifier(
+            item.imagePath,
+            "drawable",
+            holder.itemView.context.packageName
+        )
+        if (resId == 0) {
+            Log.d(ContentValues.TAG, "Cannot find image with name ${item.imagePath} in drawable folder")
+        } else {
+            Glide.with(holder.itemView.context)
+                .load(resId)
+                .placeholder(R.drawable.image_not_supported)
+                .error(R.drawable.image_not_supported)
+                .into(holder.imageView)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -64,7 +64,12 @@ class ItemCartAdapter(private val itemList: ArrayList<Item>) : RecyclerView.Adap
                 val itemPosition = adapterPosition
                 val clickedItem = itemList[itemPosition]
                 println("ini qty: $quantity")
-                val item = hashMapOf("item" to clickedItem,"qty" to qty.toDouble())
+                val item = hashMapOf(
+                    "item_id" to clickedItem.item_id,
+                    "nama_barang" to clickedItem.nama_barang,
+                    "harga" to clickedItem.harga,
+                    "imagePath" to clickedItem.imagePath,
+                    "qty" to qty.toDouble())
 
 //                val cartCollection = db.collection("carts")
                 val cartCollection = userData.collection("keranjang").document(clickedItem.item_id.toString())
