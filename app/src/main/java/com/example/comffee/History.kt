@@ -1,17 +1,13 @@
 package com.example.comffee
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
-import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comffee.databinding.ActivityHistoryBinding
-import com.example.comffee.databinding.ActivityHomepageBinding
-import com.example.comffee.databinding.ActivityOrderBinding
-import com.example.comffee.databinding.ActivityProfileBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -26,9 +22,7 @@ class History : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
     val userData = firestore.collection("users").document(currentUser?.email.toString())
-    val userID = currentUser?.uid
-
-
+    val documentId = userData.collection("keranjang")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
@@ -39,26 +33,22 @@ class History : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.icon_home->{
+            when (it.itemId) {
+                R.id.icon_home -> {
                     val intent = Intent(this, Homepage::class.java)
                     startActivity(intent)
                 }
-                R.id.icon_profile->{
-                    val intent = Intent(this, Profile::class.java)
-                    startActivity(intent)
-                }
-                R.id.icon_history->{
-                    val intent = Intent(this, com.example.comffee.History::class.java)
+                R.id.icon_history -> {
+                    val intent = Intent(this, History::class.java)
                     startActivity(intent)
                     // Biar gada transisi blink
                     overridePendingTransition(0, 0)
                 }
-                R.id.icon_order->{
+                R.id.icon_order -> {
                     val intent = Intent(this, ItemList::class.java)
                     startActivity(intent)
                 }
-                R.id.icon_logout->{
+                R.id.icon_logout -> {
                     auth.signOut()
                     val loginIntent = Intent(this, Login::class.java)
                     startActivity(loginIntent)
@@ -77,8 +67,20 @@ class History : AppCompatActivity() {
     }
 
     private fun showHistory() {
-        userData.collection("cart")
-            .document(userID.toString())
+        documentId.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+            if (firebaseFirestoreException != null) {
+                Log.w(TAG, "Listen failed.", firebaseFirestoreException)
+                return@addSnapshotListener
+            }
+
+            for (document in querySnapshot!!) {
+                Log.d(TAG, "Document id: ${document.id}")
+                Log.d(TAG, "Document data: ${document.data}")
+            }
+        }
+
+        userData.collection("keranjang")
+            .document(documentId.toString())
             .collection("transaksi")
             .orderBy("nama_barang", Query.Direction.ASCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
