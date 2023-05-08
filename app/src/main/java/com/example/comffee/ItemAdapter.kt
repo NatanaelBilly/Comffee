@@ -62,20 +62,22 @@ class ItemAdapter(private val itemList: ArrayList<Item>) :
         val itemId: TextView = itemView.findViewById(R.id.tvitemId)
         val namaBarang: TextView = itemView.findViewById(R.id.tvnamaBarang)
         val harga: TextView = itemView.findViewById(R.id.tvharga)
+        val quantity : EditText = itemView.findViewById(R.id.tvqty)
         val addButton: ImageButton = itemView.findViewById(R.id.btnAddToShoppingCart)
         val imageView: ImageView = itemView.findViewById(R.id.imgItem)
 
         init {
             addButton.setOnClickListener {
+                val qty = quantity.text.toString().trim()
                 val itemPosition = adapterPosition
                 val clickedItem = itemList[itemPosition]
-                val item = hashMapOf("item" to clickedItem,"qty" to 1)
+                println("ini qty: $quantity")
+                val item = hashMapOf("item" to clickedItem,"qty" to qty.toDouble())
 
 //                val cartCollection = db.collection("carts")
-                val cartCollection = userData.collection("keranjang")
-                cartCollection.add(item)
-                    .addOnSuccessListener {documentReference ->
-                        Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                val cartCollection = userData.collection("keranjang").document(clickedItem.item_id.toString())
+                cartCollection.set(item)
+                    .addOnSuccessListener {
                         Toast.makeText(itemView.context, "Added to cart", Toast.LENGTH_SHORT).show()
                     }
                     .addOnFailureListener { e ->

@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="@color/brown">
+        android:layout_height="wrap_content"
+        android:background="@color/bg_item">
 
         <ImageView
-            android:id="@+id/imgItem"
-            android:layout_width="130dp"
-            android:layout_height="95dp"
-            android:layout_marginLeft="10dp"
+            android:id="@+id/cartFnbPic"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:src="@drawable/kopi" />
+            android:src="@drawable/kopi"/>
 
         <TextView
-            android:id="@+id/tvnamaBarang"
+            android:id="@+id/item_nama"
+            android:paddingLeft="100dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="5dp"
             android:text="Kopi arabica"
-            android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18sp"/>
-
+            android:textColor="@color/white"/>
+        <!--        android:layout_toRightOf="@+id/item_pic"-->
         <TextView
-            android:id="@+id/tvitemId"
-            android:layout_marginLeft="150dp"
-            android:paddingTop="25dp"
+            android:id="@+id/item_description"
+            android:paddingLeft="100dp"
+            android:paddingTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medium"
-            android:textSize="15sp"
             android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/tvharga"
-            android:layout_marginLeft="150dp"
-            android:paddingTop="50dp"
+            android:id="@+id/item_price"
+            android:paddingLeft="100dp"
+            android:paddingTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rp. 20000"
-            android:textSize="18sp"
             android:textColor="@color/white"/>
+
+        <!--        android:layout_alignBottom="@+id/cartFnbPic"-->
+        <!--        android:layout_toRightOf="@+id/cartFnbPic"-->
 
         <EditText
             android:id="@+id/tvqty"
             android:layout_width="30dp"
             android:layout_height="20dp"
-            android:layout_marginLeft="300dp"
+            android:layout_marginRight="110dp"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:background="@color/cream"
             android:text="0"
             android:textAlignment="center" />
 
         <ImageButton
-            android:id="@+id/btnAddToShoppingCart"
+            android:id="@+id/btnSubmitQuantity"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="70dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/check_circle"
+            android:layout_centerVertical="true" />
+
+        <ImageButton
+            android:id="@+id/btnRemoveFromShoppingCart"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/add_shopping_cart"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/remove_logo"
             android:layout_centerVertical="true" />
 
     </RelativeLayout>

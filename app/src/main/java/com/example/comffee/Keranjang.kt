@@ -6,19 +6,18 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.comffee.databinding.ActivityHomepageBinding
 import com.example.comffee.databinding.ActivityItemListBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class ItemList : AppCompatActivity() {
+class Keranjang : AppCompatActivity() {
 
     private lateinit var binding: ActivityItemListBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemArrayList: ArrayList<Item>
-    private lateinit var itemAdapter: ItemAdapter
+    private lateinit var itemCartAdapter: ItemCartAdapter
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
@@ -31,48 +30,23 @@ class ItemList : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        recyclerView = findViewById(R.id.itemRecyclerView)
+        recyclerView = findViewById(R.id.rvItemCart)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
         itemArrayList = arrayListOf()
 
-        itemAdapter = ItemAdapter(itemArrayList)
+        itemCartAdapter = ItemCartAdapter(itemArrayList)
 
-        recyclerView.adapter = itemAdapter
+        recyclerView.adapter = itemCartAdapter
 
         EventChangeListener()
-
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.icon_home->{
-                    val intent = Intent(this, Homepage::class.java)
-                    startActivity(intent)
-                    // Biar gada transisi blink
-                    overridePendingTransition(0, 0)
-                }
-                R.id.icon_order->{
-                    val intent = Intent(this, ItemList::class.java)
-                    startActivity(intent)
-                }
-                R.id.icon_shopping_cart->{
-                    val intent = Intent(this, Keranjang::class.java)
-                    startActivity(intent)
-                }
-                R.id.icon_logout->{
-                    auth.signOut()
-                    val loginIntent = Intent(this, Login::class.java)
-                    startActivity(loginIntent)
-                }
-            }
-            true
-        }
 
     }
 
     private fun EventChangeListener() {
 
-        firestore.collection("items").orderBy("nama_barang", Query.Direction.ASCENDING)
+        userData.collection("keranjang").orderBy("nama_barang", Query.Direction.ASCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if (error != null) {
@@ -86,7 +60,7 @@ class ItemList : AppCompatActivity() {
                         }
                     }
 
-                    itemAdapter.notifyDataSetChanged()
+                    itemCartAdapter.notifyDataSetChanged()
                 }
 
             })
