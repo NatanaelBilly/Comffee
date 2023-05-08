@@ -35,10 +35,7 @@ class Order : AppCompatActivity() {
                     val intent = Intent(this, Homepage::class.java)
                     startActivity(intent)
                 }
-                R.id.icon_profile->{
-                    val intent = Intent(this, Profile::class.java)
-                    startActivity(intent)
-                }
+
                 R.id.icon_history->{
                     val intent = Intent(this, com.example.comffee.History::class.java)
                     startActivity(intent)
@@ -49,10 +46,7 @@ class Order : AppCompatActivity() {
                     // Biar gada transisi blink
                     overridePendingTransition(0, 0)
                 }
-                R.id.icon_shopping_cart->{
-                    val intent = Intent(this, ItemList::class.java)
-                    startActivity(intent)
-                }
+
                 R.id.icon_logout->{
                     auth.signOut()
                     val loginIntent = Intent(this, Login::class.java)

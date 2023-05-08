@@ -18,6 +18,7 @@ class History : AppCompatActivity() {
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemArrayList: ArrayList<Item>
+    private lateinit var itemAdapter: ItemAdapter
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
@@ -31,6 +32,12 @@ class History : AppCompatActivity() {
         recyclerView = findViewById(R.id.historyRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
+
+        itemArrayList = arrayListOf()
+
+        itemAdapter = ItemAdapter(itemArrayList)
+
+        recyclerView.adapter = itemAdapter
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -76,12 +83,14 @@ class History : AppCompatActivity() {
             for (document in querySnapshot!!) {
                 Log.d(TAG, "Document id: ${document.id}")
                 Log.d(TAG, "Document data: ${document.data}")
+
+                userData.collection("keranjang")
+                    .document(document.id)
+
             }
         }
 
-        userData.collection("keranjang")
-            .document(documentId.toString())
-            .collection("transaksi")
+        userData.collection("transaksi")
             .orderBy("nama_barang", Query.Direction.ASCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
