@@ -26,6 +26,8 @@ class History : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
     val userData = firestore.collection("users").document(currentUser?.email.toString())
+    val userID = currentUser?.uid
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,8 +77,9 @@ class History : AppCompatActivity() {
     }
 
     private fun showHistory() {
-        firestore.collection("cart")
-            .whereEqualTo("status", "selesai")
+        userData.collection("cart")
+            .document(userID.toString())
+            .collection("transaksi")
             .orderBy("nama_barang", Query.Direction.ASCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
