@@ -17,7 +17,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/image_not_supported" />
+            android:src="@drawable/kopi" />
 
         <TextView
             android:id="@+id/tvnamaBarang"
@@ -50,25 +50,19 @@
             android:textSize="18sp"
             android:textColor="@color/white"/>
 
-        <EditText
+        <TextView
             android:id="@+id/tvqty"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:textAlignment="center"
+            android:textSize="30dp"
             android:background="@color/cream"
-            android:text="0"
-            android:textAlignment="center" />
-
-        <ImageButton
-            android:id="@+id/btnAddToShoppingCart"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/add_shopping_cart"
-            android:layout_centerVertical="true" />
+            android:text="0" />
 
     </RelativeLayout>
     <ImageView
