@@ -184,7 +184,7 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
                                     "qty" to qty
                                 )
 
-                                userData.collection("transaksi").document(item_id)
+                                userData.collection("transaksi").document()
                                     .set(item)
                                     .addOnSuccessListener {
                                         println("Sukses! Transaksi telah ditambahkan ke firestore")
