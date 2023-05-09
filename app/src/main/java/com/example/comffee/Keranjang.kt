@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comffee.databinding.ActivityKeranjangBinding
@@ -63,14 +64,20 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
 
         recyclerView.adapter = itemCartAdapter
 
-        binding.cartBuy.setOnClickListener(this)
+//        binding.cartBuy.setOnClickListener(this)
+
         GlobalScope.launch(Dispatchers.Main) {
             getTotal()
         }
 
-        binding.cartBuy.setOnClickListener {
+        val cartBuy: Button = findViewById(R.id.cartBuy)
+        cartBuy.setOnClickListener {
             addToTransaksi()
         }
+
+//        binding.cartBuy.setOnClickListener {
+//            addToTransaksi()
+//        }
 
         val backButton: ImageButton = findViewById(R.id.back_btn)
         backButton.setOnClickListener {
@@ -185,12 +192,20 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
                                     .addOnFailureListener {
                                         println("Error")
                                     }
+                                userData.collection("keranjang").document(item_id).delete()
+                                    .addOnSuccessListener {
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w(ContentValues.TAG, "Error adding document", e)
+                                    }
                             }
                             .addOnFailureListener {
                                 Log.e("Firestore error!", it.message.toString())
                             }
                     }
                     Log.d(ContentValues.TAG, list.toString())
+                    val intent = Intent(this, Homepage::class.java)
+                    startActivity(intent)
                 } else {
                     Log.d(ContentValues.TAG, "Error getting documents: ", task.exception)
                 }

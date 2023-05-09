@@ -75,14 +75,31 @@ class Profile : AppCompatActivity() {
         userData.get()
             .addOnSuccessListener {
                 // set username
-                val profil = "Halo, ${it.data?.get("username").toString()}" +
-                        "\n" +
-                        "Berikut data profil kamu!" +
-                        "\n" +
-                        " Email: ${it.data?.get("email").toString()}" +
-                        "\n" +
-                        "Alamat: ${it.data?.get("address").toString()}"
+                val profil = "${it.data?.get("email").toString()}"
                 binding.tvUser.text = profil
+
+            }
+            .addOnFailureListener {
+                Log.e("Firestore error!", it.message.toString())
+            }
+
+        userData.get()
+            .addOnSuccessListener {
+                // set username
+                val profil = "${it.data?.get("username").toString()}"
+                binding.tvUsername.text = profil
+                binding.tvName.text = profil
+
+            }
+            .addOnFailureListener {
+                Log.e("Firestore error!", it.message.toString())
+            }
+
+        userData.get()
+            .addOnSuccessListener {
+                // set username
+                val profil = "${it.data?.get("address").toString()}"
+                binding.tvAddress.text = profil
 
             }
             .addOnFailureListener {
