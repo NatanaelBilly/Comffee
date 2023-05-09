@@ -1,5 +1,6 @@
 package com.example.comffee
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,6 +31,11 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
     val userData = firestore.collection("users").document(currentUser?.email.toString())
+    private lateinit var item_id :String
+    private lateinit var nama_barang: String
+    private lateinit var harga: String
+    private lateinit var imagePath: String
+    private lateinit var qty: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +54,12 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
 
         recyclerView.adapter = itemCartAdapter
 
-        binding.cartBuy.setOnClickListener(this)
-        GlobalScope.launch(Dispatchers.Main) {
-            getTotal()
+//        binding.cartBuy.setOnClickListener(this)
+//        GlobalScope.launch(Dispatchers.Main) {
+//            getTotal()
+//        }
+        binding.cartBuy.setOnClickListener {
+            addToTransaksi()
         }
         EventChangeListener()
     }
@@ -159,5 +168,49 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
         }
+    }
+    private fun addToTransaksi() {
+        userData.collection("keranjang").get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list: MutableList<String> = ArrayList()
+                    for (document in task.result) {
+                        userData.collection("keranjang").document(document.id)
+                            .get()
+                            .addOnSuccessListener {
+                                item_id = it.data?.get("item_id").toString()
+                                nama_barang = it.data?.get("nama_barang").toString()
+                                // nanti ubah ke double
+                                harga = it.data?.get("harga").toString()
+                                imagePath = it.data?.get("imagePath").toString()
+                                // nanti ubah ke double
+                                qty = it.data?.get("qty").toString()
+
+                                val item = hashMapOf(
+                                    "item_id" to item_id,
+                                    "nama_barang" to nama_barang,
+                                    "harga" to harga,
+                                    "imagePath" to imagePath,
+                                    "qty" to qty
+                                )
+
+                                userData.collection("transaksi").document(item_id)
+                                    .set(item)
+                                    .addOnSuccessListener {
+                                        println("Sukses! Transaksi telah ditambahkan ke firestore")
+                                    }
+                                    .addOnFailureListener {
+                                        println("Error")
+                                    }
+                            }
+                            .addOnFailureListener {
+                                Log.e("Firestore error!", it.message.toString())
+                            }
+                    }
+                    Log.d(ContentValues.TAG, list.toString())
+                } else {
+                    Log.d(ContentValues.TAG, "Error getting documents: ", task.exception)
+                }
+            }
     }
 }
