@@ -1,13 +1,14 @@
 package com.example.comffee
 
 import android.content.Intent
-import android.os.Bundle
-import android.service.controls.ControlsProviderService.TAG
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comffee.databinding.ActivityHistoryBinding
+import com.example.comffee.databinding.ActivityHomepageBinding
+import com.example.comffee.databinding.ActivityItemListBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
@@ -15,29 +16,31 @@ import com.google.firebase.ktx.Firebase
 
 class History : AppCompatActivity() {
 
+//    private lateinit var dbReference : DatabaseReference
     private lateinit var binding: ActivityHistoryBinding
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var itemArrayList: ArrayList<Item>
-    private lateinit var itemAdapter: ItemAdapter
+    private lateinit var historyRecyclerView: RecyclerView
+    private lateinit var historyArrayList: ArrayList<HistoryItem>
+    private lateinit var historyAdapter: HistoryAdapter
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
     val userData = firestore.collection("users").document(currentUser?.email.toString())
-    val documentId = userData.collection("keranjang")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        recyclerView = findViewById(R.id.historyRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+//        binding.btnBack.setOnClickListener {
+//
+//            val loginIntent = Intent(this, Homepage::class.java)
+//            startActivity(loginIntent)
+//        }
+        historyRecyclerView = findViewById(R.id.historyRecyclerView)
+        historyRecyclerView.layoutManager = LinearLayoutManager(this)
+        historyRecyclerView.setHasFixedSize(true)
 
-        itemArrayList = arrayListOf()
-
-        itemAdapter = ItemAdapter(itemArrayList)
-
-        recyclerView.adapter = itemAdapter
+        historyArrayList = arrayListOf<HistoryItem>()
+        showHistory()
 
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -63,33 +66,21 @@ class History : AppCompatActivity() {
             }
             true
         }
-
-//        binding.btnBack.setOnClickListener {
-//
-//            val loginIntent = Intent(this, Homepage::class.java)
-//            startActivity(loginIntent)
-//        }
-
-        showHistory()
     }
 
     private fun showHistory() {
-        documentId.addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-            if (firebaseFirestoreException != null) {
-                Log.w(TAG, "Listen failed.", firebaseFirestoreException)
-                return@addSnapshotListener
-            }
-
-            for (document in querySnapshot!!) {
-                Log.d(TAG, "Document id: ${document.id}")
-                Log.d(TAG, "Document data: ${document.data}")
-
-                userData.collection("keranjang")
-                    .document(document.id)
-
-            }
-        }
-
+//        dbReference = FirebaseDatabase.getInstance().getReference("users")
+//
+//        dbReference.addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                TODO("Not yet implemented")
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//
+//        })
         userData.collection("transaksi")
             .orderBy("nama_barang", Query.Direction.ASCENDING)
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
@@ -101,9 +92,10 @@ class History : AppCompatActivity() {
 
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
-                            itemArrayList.add(dc.document.toObject(Item::class.java))
+                            historyArrayList.add(dc.document.toObject(HistoryItem::class.java))
                         }
                     }
+                    historyRecyclerView.adapter = HistoryAdapter(historyArrayList)
                 }
 
             })

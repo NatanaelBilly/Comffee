@@ -50,14 +50,26 @@
             android:textSize="18sp"
             android:textColor="@color/white"/>
 
-        <ImageButton
-            android:id="@+id/btnAddToShoppingCart"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/add_shopping_cart"
-            android:layout_centerVertical="true" />
+        <TextView
+            android:id="@+id/tvqty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="280dp"
+            android:paddingTop="50dp"
+
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/btnAddToShoppingCart"-->
+<!--            android:layout_width="75dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_centerVertical="true"-->
+<!--            android:layout_marginRight="30dp"-->
+<!--            android:src="@drawable/add_shopping_cart" />-->
 
     </RelativeLayout>
     <ImageView

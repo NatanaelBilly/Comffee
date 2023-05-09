@@ -62,11 +62,11 @@ class ItemAdapter(private val itemList: ArrayList<Item>) :
         val itemId: TextView = itemView.findViewById(R.id.tvitemId)
         val namaBarang: TextView = itemView.findViewById(R.id.tvnamaBarang)
         val harga: TextView = itemView.findViewById(R.id.tvharga)
-        val addButton: ImageButton = itemView.findViewById(R.id.btnAddToShoppingCart)
+//        val addButton: ImageButton = itemView.findViewById(R.id.btnAddToShoppingCart)
         val imageView: ImageView = itemView.findViewById(R.id.imgItem)
 
         init {
-            addButton.setOnClickListener {
+//            addButton.setOnClickListener {
                 val itemPosition = adapterPosition
                 val clickedItem = itemList[itemPosition]
                 val item = hashMapOf("item" to clickedItem,"qty" to 1)
@@ -84,4 +84,3 @@ class ItemAdapter(private val itemList: ArrayList<Item>) :
             }
         }
     }
-}
