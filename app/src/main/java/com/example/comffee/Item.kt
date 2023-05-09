@@ -4,5 +4,6 @@ data class Item(
     var item_id : String ?= null,
     var nama_barang : String ?= null,
     var harga : Double ?= null,
-    var imagePath : String ?= null
+    var imagePath : String ?= null,
+    var qty : Int ?= null
 )

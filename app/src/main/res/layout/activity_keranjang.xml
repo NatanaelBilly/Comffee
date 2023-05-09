@@ -19,11 +19,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
+
+            <ImageButton
                 android:id="@+id/back_btn"
-                android:src="@drawable/back"/>
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@color/light_orange"
+                android:src="@drawable/back" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,9 +121,12 @@
                 android:id="@+id/cartBuy"
                 android:layout_width="150dp"
                 android:layout_height="40dp"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/white_rounded_button"
                 android:text="Beli"
                 android:textColor="@color/black"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -29,6 +30,7 @@ class ItemCartAdapter(private val itemList: ArrayList<Item>) : RecyclerView.Adap
         holder.item_id.text = item.item_id
         holder.namaBarang.text = item.nama_barang
         holder.harga.text = item.harga.toString()
+        holder.quantity.setText(item.qty.toString())
 
         val resId = holder.itemView.context.resources.getIdentifier(
             item.imagePath,
@@ -51,13 +53,13 @@ class ItemCartAdapter(private val itemList: ArrayList<Item>) : RecyclerView.Adap
     }
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val namaBarang: TextView = itemView.findViewById(R.id.item_nama)
-        val item_id: TextView = itemView.findViewById(R.id.item_description)
-        val harga: TextView = itemView.findViewById(R.id.item_price)
+        val namaBarang: TextView = itemView.findViewById(R.id.tvnamaBarang)
+        val item_id: TextView = itemView.findViewById(R.id.tvitemId)
+        val harga: TextView = itemView.findViewById(R.id.tvharga)
         val quantity : EditText = itemView.findViewById(R.id.tvqty)
         val quantityButton: ImageButton = itemView.findViewById(R.id.btnSubmitQuantity)
         val removeButton: ImageButton = itemView.findViewById(R.id.btnRemoveFromShoppingCart)
-        val imageView: ImageView = itemView.findViewById(R.id.cartFnbPic)
+        val imageView: ImageView = itemView.findViewById(R.id.imgItem)
 
         init {
             quantityButton.setOnClickListener {

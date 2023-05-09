@@ -1,12 +1,15 @@
 package com.example.comffee
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.comffee.databinding.ActivityKeranjangBinding
@@ -27,6 +30,7 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemArrayList: ArrayList<Item>
     private lateinit var itemCartAdapter: ItemCartAdapter
+    private lateinit var cartTotal: TextView
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
@@ -41,6 +45,9 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityKeranjangBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setContentView(R.layout.activity_keranjang)
+        cartTotal = findViewById(R.id.cartTotal)
 
         supportActionBar?.hide()
 
@@ -61,11 +68,19 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
         binding.cartBuy.setOnClickListener {
             addToTransaksi()
         }
+
+        val backButton: ImageButton = findViewById(R.id.back_btn)
+        backButton.setOnClickListener {
+            val intent = Intent(this, ItemList::class.java)
+            startActivity(intent)
+        }
+
         EventChangeListener()
+
     }
 
     private fun EventChangeListener() {
-        userData.collection("keranjang").orderBy("nama_barang", Query.Direction.ASCENDING)
+        userData.collection("keranjang")
             .addSnapshotListener(object : EventListener<QuerySnapshot> {
                 override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
                     if (error != null) {
@@ -84,76 +99,30 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
             })
     }
 
-//    private suspend fun getTotal() {
-//        var harga: Double
-//        var qty: Double
-//        var total = 0.0
-//        firestore.collection("user")
-//            .document(currentUser?.email.toString())
-//            .collection("keranjang")
-//            .get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    val result = task.result
-//                    if (result != null) {
-//                        for (document in task.result!!) {
-//                            firestore.collection("user")
-//                                .document(currentUser?.email.toString())
-//                                .collection("keranjang")
-//                                .document(document.id)
-//                                .get()
-//                                .addOnCompleteListener {
-//                                    harga = document.data?.get("harga").toString().toDouble()
-//                                    qty = document.data?.get("qty").toString().toDouble()
-//                                    println("jumlah barang: $qty")
-//                                    total += harga * qty
-//                                    binding.cartTotal.text = total.toString()
-//                                }
-//                        }
-//                    }
-//                    println("total: $total")
-//                }
-//            }
-//            .await()
-//    }
-
     private suspend fun getTotal() = withContext(Dispatchers.IO) {
-        var harga: Double
-        var qty: Double
-        var total = 0.0
-        try {
-            val querySnapshot = firestore.collection("user")
-                .document(currentUser?.email.toString())
-                .collection("keranjang")
-                .get()
-                .await()
 
-            println("This is query size: ${querySnapshot.documents.size}")
+        val keranjangRef = FirebaseFirestore.getInstance()
+            .collection("users")
+            .document(currentUser?.email.toString())
+            .collection("keranjang")
 
-            for (document in querySnapshot.documents) {
-                val documentSnapshot = firestore.collection("user")
-                    .document(currentUser?.email.toString())
-                    .collection("keranjang")
-                    .document(document.id)
-                    .get()
-                    .await()
+        keranjangRef.get()
+            .addOnSuccessListener { documents ->
+                var totalHarga = 0.0
 
-                val documentData = documentSnapshot.data
-                if (documentData != null) {
-                    harga = documentData["harga"].toString().toDouble()
-                    qty = documentData["qty"].toString().toDouble()
-                    println("jumlah barang: $qty")
-                    total += harga * qty
+                for (doc in documents) {
+                    val harga = doc.getDouble("harga")
+                    val qty = doc.getDouble("qty")
+                    if (harga != null && qty != null) {
+                        totalHarga += harga * qty
+                    }
                 }
+                val totalHargaFormatted = String.format("Rp%,.0f,-", totalHarga)
+                cartTotal.text = totalHargaFormatted
             }
-            withContext(Dispatchers.Main) {
-                binding.cartTotal.text = total.toString()
-                println("total: $total")
+            .addOnFailureListener { exception ->
+                Log.w("TAG", "Error getting documents: ", exception)
             }
-        } catch (e: Exception) {
-            // handle the exception here
-            println("Exception occurred: ${e.message}")
-        }
     }
 
     private fun buyProduct() {
