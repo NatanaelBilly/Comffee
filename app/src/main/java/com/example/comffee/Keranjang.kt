@@ -31,6 +31,7 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
     private lateinit var itemArrayList: ArrayList<Item>
     private lateinit var itemCartAdapter: ItemCartAdapter
     private lateinit var cartTotal: TextView
+    private lateinit var alamatValue: TextView
     private val firestore = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
     private val currentUser = auth.currentUser
@@ -48,6 +49,7 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
 
         setContentView(R.layout.activity_keranjang)
         cartTotal = findViewById(R.id.cartTotal)
+        alamatValue = findViewById(R.id.alamatValue)
 
         supportActionBar?.hide()
 
@@ -61,10 +63,11 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
 
         recyclerView.adapter = itemCartAdapter
 
-//        binding.cartBuy.setOnClickListener(this)
-//        GlobalScope.launch(Dispatchers.Main) {
-//            getTotal()
-//        }
+        binding.cartBuy.setOnClickListener(this)
+        GlobalScope.launch(Dispatchers.Main) {
+            getTotal()
+        }
+
         binding.cartBuy.setOnClickListener {
             addToTransaksi()
         }
@@ -74,6 +77,17 @@ class Keranjang : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, ItemList::class.java)
             startActivity(intent)
         }
+
+        userData.get()
+            .addOnSuccessListener {
+                // set username
+                val profil = "${it.data?.get("address").toString()}"
+                alamatValue.text = profil
+
+            }
+            .addOnFailureListener {
+                Log.e("Firestore error!", it.message.toString())
+            }
 
         EventChangeListener()
 
